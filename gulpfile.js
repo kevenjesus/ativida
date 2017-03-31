@@ -1,17 +1,15 @@
 
 var gulp = require('gulp');
-var moreCSS = require('gulp-more-css');
+var sass = require('gulp-sass');
 var htmlmin = require('gulp-html-minifier2');
 
-gulp.task('menos-css', function(){
+gulp.task('compilar-css', function(){
 
 	return gulp.src('./source/scss/*scss')
-	.pipe(moreCSS())
+	.pipe(sass())
 	.pipe(gulp.dest('./dist/css/'));
 
 });
-
-
 
 
 gulp.task('minificar-html', function(){
@@ -24,8 +22,6 @@ gulp.task('minificar-html', function(){
 
 
 gulp.task('background', function(){
-
-
-	gulp.watch('./source/scss/*scss',['menos-css']);
-	gulp.watch('./source/index.html',['minificar-html'])
+	gulp.watch('./source/scss/*.scss',['compilar-css']);
+	gulp.watch('./source/index.html',['minificar-html']);
 });
